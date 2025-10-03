@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="card shadow-lg border-0 rounded-4 p-5 text-center" style="max-width: 650px; width: 100%;">
+    
+    {% if user.is_authenticated %}
+      <h1 class="display-4 fw-bold mb-3 text-primary">Hello, {{ user.username }} 👋</h1>
+      <p class="text-muted mb-4">Welcome back! Manage your notes easily from here.</p>
+      <div class="d-flex justify-content-center gap-3">
+        <a href="{% url 'notes_list' %}" class="btn btn-primary btn-lg px-4">Go to Notes</a>
+        <a href="{% url 'account_logout' %}" class="btn btn-outline-danger btn-lg px-4">Logout</a>
+      </div>
+    
+    {% else %}
+      <h2 class="fw-bold mb-3 text-dark">Welcome to <span class="text-primary">MyNotes</span></h2>
+      <p class="text-muted mb-4">Your personal place to keep track of important notes.</p>
+      <div class="d-flex justify-content-center gap-3">
+        <a href="{% url 'account_login' %}" class="btn btn-dark btn-lg px-4">Login</a>
+        <a href="{% url 'account_signup' %}" class="btn btn-success btn-lg px-4">Sign Up</a>
+      </div>
+    {% endif %}
+    
+  </div>
+</div>
+{% endblock %}

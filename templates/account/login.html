@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card shadow p-4 p-md-5" style="width: 80%;">
+        <h2 class="text-center mb-4">Login</h2>
+
+        <form method="post">
+            {% csrf_token %}
+            {% crispy form %}
+        </form>
+
+        <hr class="my-4">
+
+        <small class=" text-muted text-center mb-2">Don't have an account?</small>
+       <div class="row justify-content-center"> <a href="{% url 'account_signup' %}" class="btn btn-primary btn-lg w-50">Create one</a></div>
+    </div>
+</div>
+{% endblock %}

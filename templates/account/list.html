@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}All Notes{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+
+    <div class="text-center mb-5">
+        <h1>Your Notes</h1>
+        <p class="lead text-muted">Click on a note to see the details.</p>
+        <a href="{% url 'note_form_create' %}" class="btn btn-primary">+ Add a New Note</a>
+    </div>
+
+    <div class="row">
+        {% for note in notes %}
+        <div class="col-md-4 mb-4">
+            <a href="{% url 'detail_page' note.pk %}" class="text-decoration-none text-dark">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <p class="card-text">
+                            {{ note.note_text|truncatewords:20|linebreaksbr }}
+                        </p>
+                    </div>
+                    <div class="card-footer bg-white border-0">
+                        <small class="text-muted">{{ note.created_at|date:"F j, Y" }}</small>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center p-5 bg-light rounded-3">
+            <h4>No notes yet.</h4>
+            <p>Click the "Add a New Note" button to get started!</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
