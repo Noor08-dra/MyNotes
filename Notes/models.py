@@ -14,6 +14,11 @@ class Notes(models.Model):
         return self.note_text[:20]
 
 class Reply(models.Model):
+    user = models.ForeignKey(
+    User,
+    on_delete=models.CASCADE,
+    related_name="replies"
+    )
     note=models.ForeignKey(Notes,on_delete=models.CASCADE,null=False,blank=False,related_name="replies")
     reply_text=models.TextField()
     created_at=models.DateTimeField(auto_now_add=True)
