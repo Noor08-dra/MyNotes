@@ -68,6 +68,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "allauth.account.middleware.AccountMiddleware",
 ]
+# Allowed Hosts
+ALLOWED_HOSTS = os.environ.get(
+    'ALLOWED_HOSTS',
+    'localhost 127.0.0.1 mynotes-3.onrender.com'
+).split()
 
 ROOT_URLCONF = 'myNotes.urls'
 
